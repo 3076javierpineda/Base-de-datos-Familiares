@@ -1,2 +1,3 @@
 venv-ArchivoIndex
 __pycache__
+db.sqlite3
