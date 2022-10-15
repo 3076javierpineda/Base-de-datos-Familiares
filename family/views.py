@@ -16,3 +16,6 @@ def ver_familiares(request):
     familiares = Familiar.objects.all()
 
     return render(request, 'family/ver_familiares.html', {'familiares':familiares})
+
+def index(request):
+    return render(request, 'family/index.html')
