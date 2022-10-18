@@ -4,12 +4,16 @@ from family.models import Familiar
 from django.template import Context, Template, loader
 from django.shortcuts import render
 
-def crear_familiar(request, nombre, apellido, edad):
+def crear_familiar(request):
     
-    familiar = Familiar(nombre=nombre, apellido=apellido, edad=edad, fecha=datetime.now())
-    familiar.save()
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        apellido = request.POST.get('apellido')
+        edad = request.POST.get('edad')
+        familiar = Familiar(nombre=nombre, apellido=apellido, edad=edad, fecha=datetime.now())
+        familiar.save()
    
-    return render(request, 'family/crear_familiar.html', {'familiar':familiar})
+    return render(request, 'family/crear_familiar.html', {})
 
 def ver_familiares(request):
     
