@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from datetime import datetime
 from family.models import Familiar
 from django.template import Context, Template, loader
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from family.forms import FamiliarFormulario
 
 def crear_familiar(request):
     
@@ -12,8 +13,12 @@ def crear_familiar(request):
         edad = request.POST.get('edad')
         familiar = Familiar(nombre=nombre, apellido=apellido, edad=edad, fecha=datetime.now())
         familiar.save()
+        
+        return redirect('ver_familiares')
+        
+    formulario = FamiliarFormulario()
    
-    return render(request, 'family/crear_familiar.html', {})
+    return render(request, 'family/crear_familiar.html', {'formulario' : formulario} )
 
 def ver_familiares(request):
     

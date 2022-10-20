@@ -7,18 +7,10 @@
 {% block 'contenido' %}
 <form action={% url 'crear_familiar' %} method="POST">
    {% csrf_token %}
-    <p>
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" placeholder="Nombre">
-    </p>
-    <p>
-        <label for="apellido">Apellido:</label>
-        <input type="text" name="apellido" placeholder="Apellido">
-    </p>
-    <p>
-        <label for="edad">edad:</label>
-        <input type="text" name="edad" placeholder="Edad">
-    </p>
+    <table>
+        {{formulario}}
+    </table>
+   
     <input type="submit" value="Crear">  
 </form>    
 {% endblock 'contenido' %}
