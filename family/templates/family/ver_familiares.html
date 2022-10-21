@@ -6,11 +6,17 @@
         <title>Ver Familiares</title>
     {% endblock 'titulo' %}
 
-<p>Listado de Familiares:</p>
+
+    <p>Listado de Familiares:</p>
+    <form action={% url 'ver_familiares' %} method="GET">
+        {{formulario}}
+        <input type="submit" value="Buscar">  
+    </form>    
+
 {% for familiar in familiares %}
     <li>{{familiar.nombre}} {{familiar.apellido}} {{familiar.edad}}</li>
 {% endfor %}
-
+ 
 {% endblock 'contenido' %}
      
 

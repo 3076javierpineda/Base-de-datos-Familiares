@@ -5,3 +5,8 @@ class FamiliarFormulario(forms.Form):
     apellido = forms.CharField(max_length=30)
     edad = forms.IntegerField()
     fecha = forms.DateField(required=False)# Create your models here.
+
+
+class BusquedaFamiliarFormulario(forms.Form):
+    nombre = forms.CharField(max_length=30)
+    
