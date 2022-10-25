@@ -1,0 +1,16 @@
+{% extends 'family/base.html' %}
+
+{% block 'titulo' %}
+    <title>Editar Familiar</title>
+{% endblock 'titulo' %}
+
+{% block 'contenido' %}
+<form action={% url 'editar_familiar' familiar.id %} method="POST">
+   {% csrf_token %}
+    <table>
+        {{formulario}}
+    </table>
+   
+    <input type="submit" value="Editar">  
+</form>    
+{% endblock 'contenido' %}

@@ -44,3 +44,29 @@ def index(request):
     return render(request, 'family/index.html')
 
 
+def editar_familiar(request, id):
+    
+    familiar = Familiar.objects.get(id=id)
+        
+    if request.method == 'POST':
+        
+        formulario = FamiliarFormulario(request.POST)
+        
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            
+            familiar.nombre = data['nombre']
+            familiar.apellido = data['apellido']
+            familiar.edad = data['edad']
+            
+            familiar.save()
+            return redirect('ver_familiares')
+        
+    formulario = FamiliarFormulario(initial={
+        'nombre': familiar.nombre,
+        'apellido': familiar.apellido,
+        'edad': familiar.edad
+        }
+    )   
+    
+    return render(request, 'family/editar_familiar.html', {'formulario': formulario, 'familiar':familiar})

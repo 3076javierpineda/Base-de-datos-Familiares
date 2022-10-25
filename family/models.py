@@ -5,3 +5,6 @@ class Familiar(models.Model):
     apellido = models.CharField(max_length=30)
     edad = models.IntegerField()
     fecha = models.DateField(null=True)# Create your models here.
+
+    def __str__(self):
+        return f'Nombre: {self.nombre} - Apellido: {self.apellido}'
