@@ -24,6 +24,9 @@ def crear_familiar(request):
             
             return redirect('ver_familiares')
         
+        else: 
+             return render(request, 'family/crear_familiar.html', {'formulario' : formulario} )
+        
     formulario = FamiliarFormulario()
    
     return render(request, 'family/crear_familiar.html', {'formulario' : formulario} )
@@ -62,6 +65,9 @@ def editar_familiar(request, id):
             familiar.save()
             return redirect('ver_familiares')
         
+        else:
+             return render(request, 'family/editar_familiar.html', {'formulario': formulario, 'familiar':familiar})
+    
     formulario = FamiliarFormulario(initial={
         'nombre': familiar.nombre,
         'apellido': familiar.apellido,
@@ -70,3 +76,9 @@ def editar_familiar(request, id):
     )   
     
     return render(request, 'family/editar_familiar.html', {'formulario': formulario, 'familiar':familiar})
+
+def eliminar_familiar(request, id):
+    familiar = Familiar.objects.get(id=id)
+    familiar.delete()
+    return redirect('ver_familiares')
+
