@@ -1,0 +1,17 @@
+{% extends 'family/base.html' %}
+
+{% block 'titulo' %}
+    <title>Eliminar Familiar</title>
+{% endblock 'titulo' %}
+
+{% block 'contenido' %}
+<form action={% url 'eliminar_familiar' object.id %} method="POST">
+   {% csrf_token %}
+   
+   <p>
+      Desea eliminar este {{object}}?
+   </p>
+   
+    <input type="submit" value="Confirmar">  
+</form>    
+{% endblock 'contenido' %}

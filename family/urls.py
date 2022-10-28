@@ -5,6 +5,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('ver-familiares/', views.ver_familiares, name='ver_familiares'),
     path('crear-familiar/', views.crear_familiar, name='crear_familiar'),
-    path('editar-familiar/<int:id>', views.editar_familiar, name='editar_familiar'),
-    path('eliminar-familiar/<int:id>', views.eliminar_familiar, name='eliminar_familiar')
+    path('editar-familiar/<int:pk>', views.EditarFamiliar.as_view(), name='editar_familiar'),
+    path('eliminar-familiar/<int:pk>', views.EliminarFamiliar.as_view(), name='eliminar_familiar')
 ]

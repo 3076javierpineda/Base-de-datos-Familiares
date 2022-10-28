@@ -1,9 +1,8 @@
-from django.http import HttpResponse
 from datetime import datetime
 from family.models import Familiar
-from django.template import Context, Template, loader
 from django.shortcuts import render, redirect
 from family.forms import FamiliarFormulario, BusquedaFamiliarFormulario
+from django.views.generic.edit import UpdateView, DeleteView
 
 def crear_familiar(request):
     
@@ -46,39 +45,15 @@ def ver_familiares(request):
 def index(request):
     return render(request, 'family/index.html')
 
-
-def editar_familiar(request, id):
+class EditarFamiliar(UpdateView):
+    model = Familiar
+    success_url = '/'
+    template_name = 'family/editar_familiar_cbv.html'
+    fields = ['nombre', 'apellido', 'edad', 'fecha']
     
-    familiar = Familiar.objects.get(id=id)
-        
-    if request.method == 'POST':
-        
-        formulario = FamiliarFormulario(request.POST)
-        
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-            
-            familiar.nombre = data['nombre']
-            familiar.apellido = data['apellido']
-            familiar.edad = data['edad']
-            
-            familiar.save()
-            return redirect('ver_familiares')
-        
-        else:
-             return render(request, 'family/editar_familiar.html', {'formulario': formulario, 'familiar':familiar})
-    
-    formulario = FamiliarFormulario(initial={
-        'nombre': familiar.nombre,
-        'apellido': familiar.apellido,
-        'edad': familiar.edad
-        }
-    )   
-    
-    return render(request, 'family/editar_familiar.html', {'formulario': formulario, 'familiar':familiar})
-
-def eliminar_familiar(request, id):
-    familiar = Familiar.objects.get(id=id)
-    familiar.delete()
-    return redirect('ver_familiares')
+class EliminarFamiliar(DeleteView):
+    model = Familiar
+    success_url = '/'
+    template_name = 'family/eliminar_familiar_cbv.html'
+      
 
