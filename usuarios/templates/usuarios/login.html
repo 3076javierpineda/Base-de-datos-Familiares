@@ -1,0 +1,16 @@
+{% extends 'family/base.html' %}
+
+{% block 'titulo' %}
+    <title>Iniciar sesion</title>
+{% endblock 'titulo' %}
+
+{% block 'contenido' %}
+<form action={% url 'login' %} method="POST">
+   {% csrf_token %}
+    <table>
+        {{formulario}}
+    </table>
+   
+    <input type="submit" value="Iniciar sesion">  
+</form>    
+{% endblock 'contenido' %}
