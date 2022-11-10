@@ -3,6 +3,11 @@ from family.models import Familiar
 from django.shortcuts import render, redirect
 from family.forms import FamiliarFormulario, BusquedaFamiliarFormulario
 from django.views.generic.edit import UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
 
 def crear_familiar(request):
     
@@ -45,13 +50,13 @@ def ver_familiares(request):
 def index(request):
     return render(request, 'family/index.html')
 
-class EditarFamiliar(UpdateView):
+class EditarFamiliar( LoginRequiredMixin, UpdateView):
     model = Familiar
     success_url = '/'
     template_name = 'family/editar_familiar_cbv.html'
     fields = ['nombre', 'apellido', 'edad', 'fecha']
     
-class EliminarFamiliar(DeleteView):
+class EliminarFamiliar( LoginRequiredMixin, DeleteView):
     model = Familiar
     success_url = '/'
     template_name = 'family/eliminar_familiar_cbv.html'

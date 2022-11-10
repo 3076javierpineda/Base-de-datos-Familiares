@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as acceso
+from usuarios.forms import MiFormularioDeCreacion
+
+
 
 def login(request):
     
@@ -18,4 +21,16 @@ def login(request):
     return render(request, 'usuarios/login.html', {'formulario': formulario})
 
 
-# Create your views here.
+def registrar(request):
+    if request.method == 'POST':
+        formulario = MiFormularioDeCreacion(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('index')
+    else:
+        formulario = MiFormularioDeCreacion()
+    
+    return render(request, 'usuarios/registrar.html', {'formulario': formulario})
+
+
+
