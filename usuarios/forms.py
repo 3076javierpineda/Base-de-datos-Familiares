@@ -12,3 +12,10 @@ class MiFormularioDeCreacion(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         help_texts ={key: '' for key in fields}
+        
+
+class EditarPerfilFormulario(forms.Form):
+    
+    email = forms.CharField()
+    first_name = forms.CharField(label='Nombre')
+    last_name = forms.CharField(label='Apellido')
