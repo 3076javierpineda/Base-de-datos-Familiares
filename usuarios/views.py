@@ -3,6 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as acceso
 from usuarios.forms import MiFormularioDeCreacion, EditarPerfilFormulario
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
+
 
 
 
@@ -64,6 +66,11 @@ def editar_perfil(request):
         )
         
     return render(request, 'usuarios/editar_perfil.html', {'formulario': formulario})
+
+class CambiarContrasenia(PasswordChangeView):
+    template_name = 'usuarios/cambiar_contrasenia.html'
+    success_url = '/usuarios/perfil/'
+
 
     
 

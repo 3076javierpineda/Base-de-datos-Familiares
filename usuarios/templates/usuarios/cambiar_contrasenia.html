@@ -1,0 +1,16 @@
+{% extends 'family/base.html' %}
+
+{% block 'titulo' %}
+    <title>Cambiar contraseña</title>
+{% endblock 'titulo' %}
+
+{% block 'contenido' %}
+<form action={% url 'cambiar_contrasenia' %} method="POST">
+   {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+   
+    <input type="submit" value="Cambiar">  
+</form>    
+{% endblock 'contenido' %}
