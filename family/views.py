@@ -35,6 +35,7 @@ def crear_familiar(request):
    
     return render(request, 'family/crear_familiar.html', {'formulario' : formulario} )
 
+@login_required
 def ver_familiares(request):
         
     nombre = request.GET.get('nombre', None)
