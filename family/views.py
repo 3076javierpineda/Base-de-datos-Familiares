@@ -61,5 +61,11 @@ class EliminarFamiliar( LoginRequiredMixin, DeleteView):
     model = Familiar
     success_url = '/'
     template_name = 'family/eliminar_familiar_cbv.html'
+    
+def sobre_nosotros(request):
+    return render(request, 'family/sobre_nosotros.html')
+
+def video(request):
+    return render(request, 'family/video.html')
       
 
