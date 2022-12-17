@@ -19,3 +19,4 @@ class EditarPerfilFormulario(forms.Form):
     email = forms.CharField()
     first_name = forms.CharField(label='Nombre')
     last_name = forms.CharField(label='Apellido')
+    avatar = forms.ImageField(required=False)
