@@ -81,6 +81,9 @@ def editar_perfil(request):
 class CambiarContrasenia(PasswordChangeView):
     template_name = 'usuarios/cambiar_contrasenia.html'
     success_url = '/usuarios/perfil/'
+    
+
+    
 
 
     

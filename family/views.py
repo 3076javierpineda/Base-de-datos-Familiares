@@ -22,8 +22,9 @@ def crear_familiar(request):
             apellido = data['apellido']
             edad = data['edad']
             fecha_creacion = data.get('fecha_creacion', datetime.now()) 
+            informacion = data['informacion']
             
-            familiar = Familiar(nombre=nombre, apellido=apellido, edad=edad, fecha=datetime.now())
+            familiar = Familiar(nombre=nombre, apellido=apellido, edad=edad, fecha=datetime.now(), informacion=informacion)
             familiar.save()
             
             return redirect('ver_familiares')
@@ -62,6 +63,7 @@ class EliminarFamiliar( LoginRequiredMixin, DeleteView):
     success_url = '/'
     template_name = 'family/eliminar_familiar_cbv.html'
     
+ 
 def sobre_nosotros(request):
     return render(request, 'family/sobre_nosotros.html')
 

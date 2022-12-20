@@ -22,7 +22,7 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href={% url 'index' %}>Inicio</a>
-                <a class="navbar-brand" href={% url 'ver_familiares' %}>Ver Familiares</a>
+                <a class="navbar-brand" href={% url 'ver_familiares' %}>Listado de Familiares</a>
                 <a class="navbar-brand" href={% url 'crear_familiar' %}>Crear Familiar</a>
                 
                 {% if request.user.is_authenticated %}
